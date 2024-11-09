@@ -52,12 +52,23 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
-// ヘッダーの背景透過制御
+// スクロールイベントを統合
 window.addEventListener('scroll', () => {
+    // ヘッダーの背景透過制御
     const header = document.querySelector('.header');
     if (window.scrollY > 100) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
+    }
+
+    // 会社概要セクションの背景画像移動
+    const companySection = document.querySelector('.company');
+    const rect = companySection.getBoundingClientRect();
+    const scrollPercentage = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+    
+    if (scrollPercentage > 0 && scrollPercentage < 1) {
+        const position = Math.min(100, Math.max(0, scrollPercentage * 100));
+        companySection.style.backgroundPosition = `${position}% center`;
     }
 });
