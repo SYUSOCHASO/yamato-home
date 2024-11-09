@@ -391,8 +391,9 @@ body {
     padding: 8rem 2rem;
     background-image: url('./image/company.png');
     background-size: cover;
-    background-position: center;
+    background-position: 0% center;  /* 開始位置を左端に */
     position: relative;
+    overflow: hidden;  /* はみ出した部分を隠す */
 }
 
 /* COMPANYセクション特有の調整 */
@@ -606,6 +607,10 @@ body {
 
     .logo-frame {
         max-width: 90%;
+    }
+
+    .company {
+        background-attachment: scroll;  /* モバイルでは通常のスクロール */
     }
 
     .footer-content {
