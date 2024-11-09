@@ -1,0 +1,614 @@
+:root {
+    --primary-color: white;
+    --accent-color: #E67E22;
+    --text-color: #333;
+    --light-bg: #f5f5f5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* ヘッダー */
+.header {
+    position: fixed;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+/* 表示状態のクラス */
+.header.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;  /* 追加：下線アニメーションのため */
+}
+
+/* 下線アニメーションの設定 */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent-color);  /* オレンジ色の下線 */
+    transition: width 0.3s ease;
+}
+
+/* ホバー時の下線アニメーション */
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* お問い合わせボタンには下線を適用しない */
+.contact-btn::after {
+    display: none;
+}
+
+.contact-btn {
+    background: var(--accent-color);
+    color: white !important;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+}
+
+/* 各セクション下の英語 */
+.section-subtitle {
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: 0.2em;  /* 文字間隔を広げる */
+    margin-top: -3rem;  /* 企業理念との間隔を調整 */
+    margin-bottom: 3rem;
+    font-size: 2.3rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 1.5);
+}
+
+/* CTAボタンのスタイル*/
+.cta-button {
+    display: inline-block;
+    background: white;
+    color: var(--accent-color);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background: var(--text-color);
+    color: white;
+}
+
+
+/* ホームセクション */
+.home {
+    height: 100vh;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}
+
+.logo-sequence {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.logo-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 40%;
+    height: auto;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* 各フレームのディレイを設定 */
+.logo-frame:nth-child(1) { animation-delay: 0s; }
+.logo-frame:nth-child(2) { animation-delay: 0.5s; }
+.logo-frame:nth-child(3) { animation-delay: 1s; }
+.logo-frame:nth-child(4) { animation-delay: 1.5s; }
+.logo-frame:nth-child(5) { animation-delay: 2s; }
+.logo-frame:nth-child(6) { animation-delay: 2.5s; }
+.logo-frame:nth-child(7) { animation-delay: 3s; }
+.logo-frame:nth-child(8) { animation-delay: 3.5s; }
+.logo-frame:nth-child(9) { animation-delay: 4s; }
+.logo-frame:nth-child(10) { animation-delay: 4.5s; }
+.logo-frame:nth-child(11) { animation-delay: 5s; }
+
+.final-logo {
+    opacity: 0;
+    animation: finalLogoFade 1s ease forwards;
+    animation-delay: 5.5s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes finalLogoFade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* アバウトセクション */
+.about {
+    padding: 8rem 2rem;
+    background: var(--accent-color);
+}
+
+/* 企業理念のタイトルを中央揃えに */
+.about-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.about-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-content {
+    padding-right: 2rem;
+}
+
+.about-text h3 {
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+    color: white;
+    align-items: center;
+    text-align: left;
+}
+
+.lead-text {
+    font-size: 1.7rem;
+    color: white;
+    margin-bottom: 1.6rem;
+    text-align: center;
+    text-align: right;
+    font-weight: bold;
+}
+
+.mission-statement {
+    margin: 2rem 0;
+    line-height: 2.6;
+    font-size: 1.1rem;
+    align-items: center;
+    font-weight: bold;
+}
+
+.about-image img {
+    width: 90vh;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* サービスセクション */
+.services {
+    padding: 15rem 7rem;
+    background: white;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;  /* タイトルと下のコンテンツの間隔を設定 */
+    font-size: 1.8rem;  /* 必要に応じてサイズ調整 */
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background: var(--accent-color);
+    padding: 6rem;
+    border-radius: 10px;
+    text-align: center;
+    min-height: 250px;  /* カードの最小の高さを設定 */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;  /* 追加 */
+    transition: all 1.5s ease;
+    overflow: hidden;  /* 追加：枠外の要素を隠す */
+    cursor: pointer;  /* 追加：カーソルを指マークに */
+    pointer-events: none;  /* 初期状態ではクリック不可 */
+    animation: enablePointerEvents 0s 2s forwards;  /* 2秒後にクリック可能に */
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;  /* 開始位置を左側に設定 */
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;  /* containの代わりに100%を指定 */
+    background-position: center;
+    background-repeat: no-repeat;  /* 追加：画像の繰り返しを防ぐ */
+    opacity: 0;
+    transition: all 0.4s ease;  /* opacityだけでなく、全てのプロパティにトランジションを適用 */
+    z-index: -1;
+    pointer-events: none;  /* 背景画像自体もクリック不可に */
+}
+
+/* アニメーション完了後のホバー効果 */
+.service-card.animation-completed:hover::before {
+    left: 0;
+    opacity: 0.5;
+}
+
+/* アニメーション完了後のカード効果 */
+.service-card.animation-completed:hover {
+    transform: translateY(-10px);
+    background: black;
+    color: white;
+}
+
+/* ホバー時のアイコン効果も追加 */
+.service-card:hover i {
+    transform: translateY(-10px) rotate(360deg);
+    transition: transform 0.6s cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+/* アイコンとテキストのサイズも調整 */
+.service-card i {
+    font-size: 2.5rem;  /* アイコンサイズを大きく */
+    margin-bottom: 1.5rem;
+    color: white;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.service-card h3 {
+    font-size: 1.8rem;  /* タイトルサイズを大きく */
+    margin-bottom: 1rem;
+}
+
+.service-card p {
+    font-size: 1.2rem;  /* 説明文のサイズを大きく */
+    line-height: 1.8;
+}
+
+/* アイコンのポップアニメーション */
+@keyframes iconPop {
+    0% {
+        transform: translateY(20px) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(-15px) scale(1.2);
+    }
+    75% {
+        transform: translateY(5px) scale(0.9);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* クリック可能状態に戻すためのアニメーション */
+@keyframes enablePointerEvents {
+    to {
+        pointer-events: auto;
+    }
+}
+
+/* 各カードの背景画像設定 */
+.service-card:nth-child(1)::before {
+    background-image: url('./image/reform.png');
+}
+
+.service-card:nth-child(2)::before {
+    background-image: url('./image/all-electric.png');
+}
+
+.service-card:nth-child(3)::before {
+    background-image: url('./image/house-cleaning.png');
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.company {
+    padding: 8rem 2rem;
+    background-image: url('./image/company.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* COMPANYセクション特有の調整 */
+.company .section-subtitle {
+    margin-bottom: -4rem;  /* 3remから1remに変更して間隔を狭める */
+}
+
+.company .section-title,
+.company .section-subtitle {
+    color: #fff;  /* または color: white; */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);  /* 読みやすくするための影効果 */
+}
+
+.company-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.company-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3rem;
+}
+
+.company-table th,
+.company-table td {
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+}
+
+.company-table th {
+    background: rgba(255, 152, 0, 0.9);  /* var(--accent-color)を rgba で半透明に */
+    color: white;
+    width: 25%;
+    text-align: center;
+    vertical-align: top;
+    font-weight: bold;
+}
+
+.company-table td {
+    background: rgba(255, 255, 255, 0.9);  /* 白背景を半透明に */
+}
+
+.office {
+    margin-bottom: 1rem;
+}
+
+.office:last-child {
+    margin-bottom: 0;
+}
+
+.office h4 {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: black;
+}
+
+.office p {
+    line-height: 1.6;
+}
+
+.contact {
+    padding: 8rem 2rem;
+    background: white;
+}
+
+.contact-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.contact-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;  /* アイコンとテキストの間隔を広げる */
+    padding: 1.5rem 4rem;  /* ボタン自体も大きく */
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3rem;  /* テキストも少し大きく */
+    transition: transform 0.3s ease;
+}
+
+.contact-button:hover {
+    transform: translateY(-5px);
+}
+
+.mail-button {
+    background: var(--accent-color);
+    color: white;
+}
+
+.line-button {
+    background: #00B900;  /* LINE の公式カラー */
+    color: white;
+}
+
+.contact-button i {
+    font-size: 3rem;
+}
+
+.footer {
+    background: var(--accent-color);
+    color: white;
+    padding: 4rem 2rem 2rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.footer-logo img {
+    max-width: 200px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-addresses {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.address p, .contact-info p {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+}
+
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-nav a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 0;
+    transition: opacity 0.3s;
+    transition: color 0.3s ease;  /* 色の変化をスムーズに */
+}
+
+.footer-nav a:hover {
+    opacity: 0.8;
+    color: #333;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.privacy-policy {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;  /* 色の変化をスムーズに */
+}
+
+.privacy-policy:hover {
+    color: #333;  /* ホバー時の色を変更 */
+}
+
+.copyright {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-content {
+        padding-right: 0;
+    }
+
+    .about-text h3 {
+        font-size: 2rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+
+    .logo-frame {
+        max-width: 90%;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
