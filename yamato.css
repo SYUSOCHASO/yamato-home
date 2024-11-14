@@ -401,7 +401,7 @@ body {
 
 .company {
     padding: 8rem 2rem;
-    background-image: url('./image/company.png');
+    background-image: url('./image/company.webp');
     background-size: cover;
     background-position: center;
     position: relative;
