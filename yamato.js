@@ -9,15 +9,14 @@ const logoFrames = document.querySelectorAll('.logo-frame');
 const lastLogoFrame = logoFrames[logoFrames.length - 1];
 
 // アニメーション完了までの時間を計算（最後のフレームまでの時間）
-const animationDuration = 7000; // 7秒間（調整可能）
+const animationDuration = 5000; // 5秒間（調整可能）
 
 // アニメーション完了後にスクロールを有効化とヘッダー表示
 setTimeout(() => {
     document.body.style.overflow = '';
-    document.body.style.transition = 'opacity 0.5s';
-    document.body.style.opacity = '1';
     
-    // ヘッダーを表示
+    // ヘッダーを表示（トランジションを追加）
+    header.style.transition = 'opacity 0.8s, visibility 0.8s';
     header.style.opacity = '1';
     header.style.visibility = 'visible';
 }, animationDuration);
