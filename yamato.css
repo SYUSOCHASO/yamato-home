@@ -134,48 +134,43 @@ body {
 }
 
 .home-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fff;
 }
 
 .logo-sequence {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 600px; /* ロゴのサイズに応じて調整してください */
+    height: 600px; /* ロゴのサイズに応じて調整してください */
 }
 
 .logo-frame {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 40%;
-    height: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
+    animation: fadeIn 0.5s ease-in-out forwards;
 }
 
-/* 各フレームのディレイを設定 */
-.logo-frame:nth-child(1) { animation-delay: 0s; }
-.logo-frame:nth-child(2) { animation-delay: 0.5s; }
-.logo-frame:nth-child(3) { animation-delay: 1s; }
-.logo-frame:nth-child(4) { animation-delay: 1.5s; }
-.logo-frame:nth-child(5) { animation-delay: 2s; }
-.logo-frame:nth-child(6) { animation-delay: 2.5s; }
-.logo-frame:nth-child(7) { animation-delay: 3s; }
-.logo-frame:nth-child(8) { animation-delay: 3.5s; }
-.logo-frame:nth-child(9) { animation-delay: 4s; }
-.logo-frame:nth-child(10) { animation-delay: 4.5s; }
-.logo-frame:nth-child(11) { animation-delay: 5s; }
+/* 各ロゴフレームのアニメーションタイミング（logo8まで） */
+.logo-sequence picture:nth-child(1) img { animation-delay: 0s; }
+.logo-sequence picture:nth-child(2) img { animation-delay: 0.5s; }
+.logo-sequence picture:nth-child(3) img { animation-delay: 1s; }
+.logo-sequence picture:nth-child(4) img { animation-delay: 1.5s; }
+.logo-sequence picture:nth-child(5) img { animation-delay: 2s; }
+.logo-sequence picture:nth-child(6) img { animation-delay: 2.5s; }
+.logo-sequence picture:nth-child(7) img { animation-delay: 3s; }
+.logo-sequence picture:nth-child(8) img { animation-delay: 3.5s; }
 
+/* 最終ロゴは logo8 の後に表示 */
 .final-logo {
-    opacity: 0;
-    animation: finalLogoFade 1s ease forwards;
-    animation-delay: 5.5s;
+    animation: finalLogoAnimation 1s ease-out 4s forwards !important;
+    transform-origin: center center;
 }
 
 @keyframes fadeIn {
@@ -187,14 +182,31 @@ body {
     }
 }
 
-@keyframes finalLogoFade {
+@keyframes fadeInFinal {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8);
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* 3D回転とズームブラーを組み合わせたアニメーション */
+@keyframes finalLogoAnimation {
+    0% {
+        opacity: 0;
+        transform: perspective(800px) rotateX(-90deg) scale(1.5);
+        filter: blur(10px);
+    }
+    60% {
+        opacity: 0.7;
+        transform: perspective(800px) rotateX(15deg) scale(1.1);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: perspective(800px) rotateX(0) scale(1);
+        filter: blur(0);
     }
 }
 
@@ -391,9 +403,8 @@ body {
     padding: 8rem 2rem;
     background-image: url('./image/company.png');
     background-size: cover;
-    background-position: 0% center;  /* 開始位置を左端に */
+    background-position: center;
     position: relative;
-    overflow: hidden;  /* はみ出した部分を隠す */
 }
 
 /* COMPANYセクション特有の調整 */
@@ -607,10 +618,6 @@ body {
 
     .logo-frame {
         max-width: 90%;
-    }
-
-    .company {
-        background-attachment: scroll;  /* モバイルでは通常のスクロール */
     }
 
     .footer-content {
